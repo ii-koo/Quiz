@@ -1,0 +1,24 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static css/bootstrap.min.css}" rel="stylesheet">
+    <!-- CSS -->
+    <link href="{% static css/style.css}" rel="stylesheet">
+
+    <title>QUIZ</title>
+  </head>
+  <body>
+    <div class="container mt-3">
+      {% block content %}
+      {% endblock content %}
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+  </body>
+</html>
