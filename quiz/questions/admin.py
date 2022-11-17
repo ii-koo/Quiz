@@ -1,15 +1,15 @@
 from django.contrib import admin
-from .models import Questions, Answers
+from .models import Question, Answer
 # Register your models here.
 
 
 class AnswerInline(admin.TabularInline):
-    model = Answers
+    model = Answer
 
 
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [AnswerInline]
 
 
-admin.site.register(Questions, QuestionAdmin)
-admin.site.register(Answers)
+admin.site.register(Question, QuestionAdmin)
+admin.site.register(Answer)

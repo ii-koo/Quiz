@@ -3,7 +3,7 @@ from quizes.models import Quiz
 # Create your models here.
 
 
-class Questions(models.Model):
+class Question(models.Model):
     text = models.CharField(max_length=200)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
@@ -15,10 +15,10 @@ class Questions(models.Model):
         return self.answer_set.all()
 
 
-class Answers(models.Model):
+class Answer(models.Model):
     text = models.CharField(max_length=200)
     correct = models.BooleanField(default=False)
-    question = models.ForeignKey(Questions, on_delete=models.CASCADE, related_name='answers')
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
