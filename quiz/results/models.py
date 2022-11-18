@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Result(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    results = models.FloatField()
+    score = models.FloatField()
 
     def __str__(self):
         return str(self.pk)
