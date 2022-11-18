@@ -1,5 +1,7 @@
 const btn_modals = [...document.getElementsByClassName('modal-button')]
 const body_modal = document.getElementById('modal-body-confirm');
+const btn_start = document.getElementById('start-quiz');
+const url = window.location.href
 
 btn_modals.forEach(btn_modal=> btn_modal.addEventListener('click',()=>{
     const pk = btn_modal.getAttribute('data-pk');
@@ -15,4 +17,8 @@ btn_modals.forEach(btn_modal=> btn_modal.addEventListener('click',()=>{
     '</b></li><li>Number of questions: <b>'+numQuestions+
     '</b></li><li>Score to pass: <b>'+scoreToPass+
     ' or above</b></li><li>Time: <b>'+time+' min</b></li></ul></div>'
+
+    btn_start.addEventListener('click',()=>{
+        window.location.href = url + pk
+    });
 }));

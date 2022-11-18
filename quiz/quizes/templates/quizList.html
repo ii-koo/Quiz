@@ -1,6 +1,12 @@
 {% extends "layout/base.html "%}
+{% load static %}
+
+{% block scripts %}
+    <script src="{% static 'js/quizList.js' %}" defer></script>
+{% endblock scripts %}
+
 {% block content %}
-<h1>Quizes Page</h1>
+<h1>Quizes Lists</h1>
 <!-- Modal -->
 <!-- Button trigger modal -->
 <div class="row">
