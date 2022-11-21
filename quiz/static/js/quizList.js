@@ -3,6 +3,7 @@ const body_modal = document.getElementById('modal-body-confirm');
 const btn_start = document.getElementById('start-quiz');
 const url = window.location.href
 
+
 btn_modals.forEach(btn_modal=> btn_modal.addEventListener('click',()=>{
     const pk = btn_modal.getAttribute('data-pk');
     const name = btn_modal.getAttribute('data-quiz');
