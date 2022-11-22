@@ -1,5 +1,54 @@
 const url = window.location.href;
 const quizBox = document.getElementById('quiz-box');
+const timerBox = document.getElementById('timer-box');
+
+function stopInterval(timer){
+    countdown(0);
+    clearInterval(timer);
+}
+
+const countdown = (time) =>{
+        if(time.toString().length < 2){
+            timerBox.innerHTML = `<b>0${time}:00<b>`
+        }else{
+            timerBox.innerHTML = `<b>${time}:00<b>`
+        }
+
+        let min = time - 1;
+        let sec = 60;
+        let displaySec;
+        let displayMin;
+
+        const timer = setInterval(()=>{
+            sec --
+            if(sec < 0){
+                sec = 59;
+                min --
+            }
+            if(min.toString().length < 2){
+                displayMin = '0'+min;
+            }else{
+                displayMin = min;
+            }
+
+            if(sec.toString().length < 2){
+                displaySec = '0'+sec;
+            }else{
+                displaySec = sec;
+            }
+
+            if(min==0 && sec==0){
+                timerBox.innerHTML = "<b>00:00</b>";
+                setTimeout(()=>{
+                    clearInterval(timer);
+                    alert('Time Over');
+                    sendData();
+                }, 500);
+            }
+            timerBox.innerHTML = `<b>${displayMin}:${displaySec}</b>`
+        }, 1000);
+        document.getElementById('btn-submit').addEventListener('click', ()=>stopInterval(timer));
+};
 
 $.ajax({
     type:'GET',
@@ -19,11 +68,12 @@ $.ajax({
                 '</div>'
                 });
             }
+        countdown(response.time);
         });
     },
     error: function(error){
         console.log(error);
-    }
+    },
 });
 
 const quizForm = document.getElementById('quiz-form');
@@ -53,9 +103,9 @@ const sendData=()=>{
             const scoreBox = document.getElementById('score-box');
             const resultBox = document.getElementById('result-box');
             const results = response.results;
-            quizForm.classList.add('not-visible');
 
-            scoreBox.innerHTML = ` ${response.passed ? 'Congratulations! ': 'Sorry: '}Your result is ${response.score}`
+            quizForm.classList.add('not-visible');
+            scoreBox.innerHTML = ` ${response.passed ? 'Congratulations! ': 'Sorry: '}Your result is ${response.score.toFixed(2)}`
 
             results.forEach(res=>{
                 const resDiv = document.createElement("div");
@@ -85,6 +135,7 @@ const sendData=()=>{
                 }
                 resultBox.append(resDiv);
             });
+
         },
         error: function(error){
             console.log(error);
