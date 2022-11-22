@@ -1,0 +1,6 @@
+.not-visible{
+    display:none;
+}
+.bg-body{
+    background : url('img/bg-login.png');
+}
